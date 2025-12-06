@@ -7,14 +7,15 @@ const exec = require('@actions/exec');
 const glob = require('@actions/glob');
 
 const input_version = core.getInput('version');
-const ormolu_version = input_version === 'latest' ? '0.7.0.0' : input_version;
-const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Linux.zip';
-const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-Windows.zip';
-const ormolu_macos_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-macOS.zip';
+const ormolu_version = input_version === 'latest' ? '0.8.0.0' : input_version;
+const ormolu_linux_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-linux.zip';
+const ormolu_windows_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-x86_64-windows.zip';
+const ormolu_darwin_url = 'https://github.com/tweag/ormolu/releases/download/' + ormolu_version + '/ormolu-aarch64-darwin.zip';
 
 const input_pattern = core.getInput('pattern');
 const input_respect_cabal_files = core.getInput('respect-cabal-files').toUpperCase() !== 'FALSE';
 const input_follow_symbolic_links = core.getInput('follow-symbolic-links').toUpperCase() !== 'FALSE';
+const input_mode = core.getInput('mode').toLowerCase();
 const input_extra_args = core.getInput('extra-args');
 
 async function run() {
@@ -28,7 +29,7 @@ async function run() {
         ormolu_archive = await tool_cache.downloadTool(ormolu_windows_url);
     }
     else if (process.platform === 'darwin') {
-        ormolu_archive = await tool_cache.downloadTool(ormolu_macos_url);
+        ormolu_archive = await tool_cache.downloadTool(ormolu_darwin_url);
     }
     else {
         ormolu_archive = await tool_cache.downloadTool(ormolu_linux_url);
@@ -86,7 +87,7 @@ async function run() {
     if (files.length > 0) {
         await exec.exec(
             ormolu_cached_path,
-            ['--color', 'always', '--check-idempotence', '--mode', 'check']
+            ['--color', 'always', '--check-idempotence', '--mode', input_mode]
                 .concat(respect_cabal_files)
                 .concat(extra_args)
                 .concat(files)
