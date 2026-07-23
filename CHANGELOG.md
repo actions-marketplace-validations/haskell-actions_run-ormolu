@@ -1,3 +1,12 @@
+## Ormolu action v19
+
+* Specifies that it wants to run on Node.js 24 explicitly, so you won't be
+  getting any warnings about Node.js 20 anymore.
+
+## Ormolu action v18
+
+* Use Ormolu 0.8.1.1 as the latest version.
+
 ## Ormolu action v17
 
 * Uses Ormolu 0.8.0.0 as the latest version.
