@@ -60,7 +60,7 @@ jobs:
 Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
-[ormolu]: https://github.com/tweag/ormolu
+[ormolu]: https://github.com/mrkkrp/ormolu
 [multiple-patterns-example]: https://github.com/haskell-actions/run-ormolu/blob/master/action.yml#L9-L11
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
 
