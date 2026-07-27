@@ -1,3 +1,8 @@
+## Ormolu action v20
+
+* Switch to the new official upstream of the project and default to the
+  version 0.8.2.0.
+
 ## Ormolu action v19
 
 * Specifies that it wants to run on Node.js 24 explicitly, so you won't be

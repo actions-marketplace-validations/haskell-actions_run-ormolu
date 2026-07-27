@@ -38,7 +38,7 @@ $ git config --global core.autocrlf false
 In the simple case all you need to do is to add this step to your job:
 
 ```yaml
-- uses: haskell-actions/run-ormolu@v19
+- uses: haskell-actions/run-ormolu@v20
 ```
 
 However, if you are using a matrix, then it is more efficient to have a
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: haskell-actions/run-ormolu@v19
+      - uses: haskell-actions/run-ormolu@v20
   build:
     runs-on: ubuntu-latest
     needs: ormolu
@@ -60,7 +60,7 @@ jobs:
 Here, the `build` job depends on `ormolu` and will not run unless `ormolu`
 passes.
 
-[ormolu]: https://github.com/tweag/ormolu
+[ormolu]: https://github.com/mrkkrp/ormolu
 [multiple-patterns-example]: https://github.com/haskell-actions/run-ormolu/blob/master/action.yml#L9-L11
 [git-core-autocrlf]: https://www.git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
 
